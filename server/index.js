@@ -10,6 +10,9 @@ app.use(express.json())
 
 //Routes
 app.use('/admin', admin)
+app.get('/', (req, res) => {
+    res.send('salve')
+})
 
 //Server config
 const PORT = process.env.PORT || 3000;

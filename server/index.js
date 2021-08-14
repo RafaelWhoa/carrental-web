@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const admin = require('./routes/admin');
+const mongoose = require('mongoose')
+const Mongoose = require('./config/db')
 
 //Body Parser
 app.use(express.urlencoded({ extended: true }));

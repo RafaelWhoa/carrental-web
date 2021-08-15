@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose')
 require('../models/Agency')
 const Agency = mongoose.model('agency')
+require('../models/Car')
+const Car = mongoose.model('car')
 
 router.post('/api/newAgency', (req, res) => {
     const newAgency = {
@@ -22,6 +24,24 @@ router.post('/api/newAgency', (req, res) => {
 
 router.get('/', (req, res) => {
     res.send('Salve de novo')
+})
+
+router.post('/api/newCar', (req, res) => {
+    const newCar = {
+        brand: req.body.brand,
+        model: req.body.model,
+        VIN: req.body.VIN,
+        licensePlate: req.body.licensePlate,
+        agency: req.body.agency
+    }
+
+    console.log(newCar)
+
+    new Car(newCar).save().then(() => {
+        console.log('Car saved!')
+    }).catch(err => {
+        console.log(err)
+    })
 })
 
 module.exports = router

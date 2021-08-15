@@ -23,5 +23,6 @@ const Car = new Schema({
         ref: 'agency',
         required: true
     }
-
 })
+
+mongoose.model('car', Car)

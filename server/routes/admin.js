@@ -52,4 +52,12 @@ router.post('/api/deleteAgency', (req, res) => {
     })
 })
 
+router.post('/api/deleteCar', (req, res) => {
+    Car.deleteOne({_id: req.body.id}).then((car) => {
+        console.log('Car deleted!')
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
 module.exports = router

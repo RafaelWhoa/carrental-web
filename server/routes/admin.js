@@ -40,7 +40,23 @@ router.get('/agencies/new-agency', (req, res) => {
     res.render('admin/newAgency')
 })
 
-router.post('/agencies/newCar', (req, res) => {
+router.get('/cars', (req, res) => {
+    Car.find().lean().populate('agency').then((car) => {
+        res.render('admin/cars', { car: car})
+    }).catch((err) => {
+        res.redirect('/500')
+    })
+})
+
+router.get('/cars/new', (req, res) => {
+    Agency.find().lean().then((agency) => {
+        res.render('admin/newCar', {agency:agency})
+    }).catch((err) => {
+        res.redirect('/500')
+    })
+})
+
+router.post('/api/newCar', (req, res) => {
     const newCar = {
         brand: req.body.brand,
         model: req.body.model,
@@ -49,12 +65,12 @@ router.post('/agencies/newCar', (req, res) => {
         agency: req.body.agency
     }
 
-    console.log(newCar)
-
     new Car(newCar).save().then(() => {
-        console.log('Car saved!')
+        req.flash('success_msg', 'Carro registrado com sucesso')
+        res.redirect('/admin/cars')
     }).catch(err => {
-        console.log(err)
+        req.flash('error_msg', 'Houve um erro ao registrar o carro')
+        res.redirect('/admin/cars')
     })
 })
 

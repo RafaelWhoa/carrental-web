@@ -1,0 +1,52 @@
+{{#each errors}}
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Erro
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{text}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+
+<h2>Novo veículo</h2>
+<hr>
+<div class="card text-white">
+    <div class="card-body">
+        <form action="/admin/api/newCar" method="POST">
+        <label for="brand">Marca: </label>
+            <input type="text" id="brand" name="brand" class="form-control">
+        <label for="model">Modelo: </label>
+            <input type="text" id="model" name="model" class="form-control">
+        <label for="VIN">Numeração do chassi: </label>
+            <input type="text" id="VIN" name="VIN" class="form-control">
+        <label for="licensePlate">Placa: </label>
+            <input type="text" id="licensePlate" name="licensePlate" class="form-control">
+        <label for="agency">Agência: </label>
+        <select name="agency" type="text" class="form-select">
+            <option selected disabled hidden value=""></option>
+            {{#each agency}}
+                <option value="{{_id}}">{{name}}, {{city}}</option>
+            {{else}}
+                <option disabled value="">Nenhuma agência registrada</option>
+            {{/each}}
+        </select>
+        <br>
+        <button type="submit" class="btn btn-success" style="float: right">Adicionar veículo</button>    
+        </form>
+    </div>
+</div>

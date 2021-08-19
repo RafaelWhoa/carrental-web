@@ -20,14 +20,26 @@ body {
     background: #555
 }
 
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,p,small {
     color:white;
+}
+
+hr {
+    border-top:2px solid white;
 }
 
 .btn-container {
     border-radius: 10px;
     background-color:#fff;
     width: 150px;
+}
+
+.btn-row {
+    float: right;
+}
+
+.card {
+    background-color: #474747;
 }
 
 .navbar{

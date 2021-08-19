@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 
 router.get('/agencies', (req, res) => {
     Agency.find().lean().then((agency) => {
-        res.render('agencies', {agency:agency})
+        res.render('admin/agencies', {agency:agency})
     }).catch((err) => {
         res.redirect('/500')
     })

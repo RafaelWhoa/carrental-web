@@ -21,12 +21,16 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
 
 //Public
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 //Routes
 app.use('/admin', admin)
 app.get('/', (req, res) => {
-    res.send('salve')
+    res.render('index')
+})
+
+app.get('/500', (req, res) => {
+    res.sendStatus(500)
 })
 
 //Server config

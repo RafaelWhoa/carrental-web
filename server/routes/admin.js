@@ -23,7 +23,15 @@ router.post('/api/newAgency', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    res.send('Salve de novo')
+    res.render('admin')
+})
+
+router.get('/agencies', (req, res) => {
+    Agency.find().lean().then((agency) => {
+        res.render('agencies', {agency:agency})
+    }).catch((err) => {
+        res.redirect('/500')
+    })
 })
 
 router.post('/api/newCar', (req, res) => {

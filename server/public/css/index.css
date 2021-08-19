@@ -103,6 +103,12 @@ hr {
     border: 1px solid #9a1550
 }
 
+.form-select:focus {
+    outline: none;
+    border: 1px solid #9a1550;
+    box-shadow: none;
+}
+
 .flight-where-from:after {
     position: absolute;
     content: '23';

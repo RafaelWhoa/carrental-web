@@ -4,6 +4,17 @@ const admin = require('./routes/admin');
 const mongoose = require('mongoose');
 const Mongoose = require('./config/db');
 const exphbs = require('express-handlebars');
+const flash = require('connect-flash');
+const session = require('express-session');
+
+//Session
+app.use(session({
+    secret: "sim",
+    resave: true,
+    saveUninitialized: true
+}))
+
+app.use(flash())
 
 //Body Parser
 app.use(express.urlencoded({ extended: true }));

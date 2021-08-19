@@ -42,6 +42,14 @@ hr {
     background-color: #474747;
 }
 
+.heart {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height:30%;
+}
+
 .navbar{
     background-color: #A8A7A7
 }

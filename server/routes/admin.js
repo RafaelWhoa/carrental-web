@@ -16,9 +16,11 @@ router.post('/api/newAgency', (req, res) => {
     console.log(newAgency)
 
     new Agency(newAgency).save().then(() => {
-        console.log('Agency created!')
+        req.flash('success_msg', 'Agencia adicionada com sucesso')
+        res.redirect('/admin/agencies')
     }).catch(err => {
-        console.log(err)
+        req.flash('error', 'Houve um erro interno ao adicionar a agência')
+        res.redirect('/admin/agencies')
     })
 })
 
@@ -34,7 +36,11 @@ router.get('/agencies', (req, res) => {
     })
 })
 
-router.post('/api/newCar', (req, res) => {
+router.get('/agencies/new-agency', (req, res) => {
+    res.render('admin/newAgency')
+})
+
+router.post('/agencies/newCar', (req, res) => {
     const newCar = {
         brand: req.body.brand,
         model: req.body.model,
@@ -54,9 +60,11 @@ router.post('/api/newCar', (req, res) => {
 
 router.post('/api/deleteAgency', (req, res) => {
     Agency.deleteOne({_id: req.body.id}).then((agency) => {
-        console.log('Agency deleted!')
+        req.flash('success_msg', 'Agência deletada com sucesso')
+        res.redirect('/admin/agencies')
     }).catch((err) => {
-        console.log(err)
+        req.flash('error_msg', 'Houve um erro interno ao deletar a agência')
+        res.redirect('/admin/agencies')
     })
 })
 

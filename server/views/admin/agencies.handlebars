@@ -1,19 +1,20 @@
-<link rel="stylesheet" href="../css/index.css">
-
 <h2>Lista de agências</h2>
 <hr>
 <a href="/admin/agencies/new-agency"><button type="button" class="btn btn-primary">Nova agência</button></a>
 
 {{#each agency}}
-    <div class="card mt-4">
+    <div class="card mt-3">
         <div class="card-body">
             <h4>{{name}}</h4>
             <p>{{city}}</p>
             <small>{{address}}</small>
         </div>
         <div class="btn-row">
-            <a href="/admin/agencies/edit-agency"><button type="button" class="btn btn-primary">Editar</button></a>
-            <a href="/admin/agencies/edit-agency"><button type="button" class="btn btn-danger">Deletar</button></a>
+            <a href="/admin/agencies/edit-agency/{{id}}"><button type="button" class="btn btn-primary">Editar</button></a>
+            <form action="/admin/api/deleteAgency" method="POST">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+            </form>
         </div>
     </div>
 {{else}}

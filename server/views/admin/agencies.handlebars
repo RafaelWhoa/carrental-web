@@ -10,7 +10,7 @@
             <small>{{address}}</small>
         </div>
         <div class="btn-row">
-            <a href="/admin/agencies/edit-agency/{{id}}"><button type="button" class="btn btn-primary">Editar</button></a>
+            <a href="/admin/agencies/edit-agency/{{_id}}"><button type="button" class="btn btn-primary">Editar</button></a>
             <form action="/admin/api/deleteAgency" method="POST">
                 <input type="hidden" name="id" value="{{_id}}">
                 <button type="submit" class="btn btn-danger mt-2">Deletar</button>

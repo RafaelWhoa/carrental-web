@@ -30,7 +30,7 @@ hr {
 
 .btn-container {
     border-radius: 10px;
-    background-color:#fff;
+    background-color:#474747;
     width: 150px;
 }
 
@@ -56,7 +56,7 @@ hr {
 
 .nav-tabs .nav-link.active {
     border-color: transparent;
-    background-color: #fff !important;
+    background-color: #474747 !important;
     color: #9a1550 !important;
     border-bottom: 4px solid #9a1550 !important;
 }
@@ -88,6 +88,7 @@ hr {
 }
 
 .tab-pane {
+    background-color: #363636;
     height: 300px
 }
 

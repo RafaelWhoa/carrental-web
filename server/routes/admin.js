@@ -58,6 +58,34 @@ router.post('/agencies/newCar', (req, res) => {
     })
 })
 
+router.get('/agencies/edit-agency/:id', (req, res) => {
+    Agency.findOne({_id: req.params.id}).lean().then((agency) => {
+        res.render('admin/editAgency', {agency:agency})
+    }).catch((err) => {
+        req.flash('error_msg', 'Esta agência não existe')
+        res.redirect('/admin/agencies')
+    })
+})
+
+router.post('/api/editAgency', (req, res) => {
+    Agency.findOne({_id: req.body.id}).then((agency) => {
+        agency.name = req.body.name
+        agency.city = req.body.city
+        agency.address = req.body.address
+
+        agency.save().then(() => {
+            req.flash('success_msg', 'Agência editada com sucesso')
+            res.redirect('/admin/agencies')
+        }).catch((err) => {
+            req.flash('error_msg', 'Houve um erro interno ao editar a agência')
+            res.redirect('/admin/agencies')
+        })
+    }).catch((err) => {
+        req.flash('error_msg', 'Houve um erro interno ao editar a agência')
+        res.redirect('/admin/agencies')
+    })
+})
+
 router.post('/api/deleteAgency', (req, res) => {
     Agency.deleteOne({_id: req.body.id}).then((agency) => {
         req.flash('success_msg', 'Agência deletada com sucesso')

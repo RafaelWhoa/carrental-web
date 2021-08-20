@@ -1,0 +1,53 @@
+{{#each errors}}
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Erro
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {{text}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+
+<h2>Editar agência</h2>
+<hr>
+<div class="card text-white">
+    <div class="card-body">
+        <form action="/admin/api/editCar" method="POST">
+        <input type="hidden" name="id" value="{{car._id}}" />
+        <label for="brand">Marca: </label>
+            <input type="text" id="brand" name="brand" placeholder="Nome da agência" class="form-control" value="{{car.brand}}">
+        <label for="model">Modelo: </label>
+            <input type="text" id="model" name="model" placeholder="Cidade da agência" class="form-control" value="{{car.model}}">
+        <label for="VIN">Numeração do chassi: </label>
+            <input type="text" id="VIN" name="VIN" placeholder="Endereço da agência" class="form-control" value="{{car.VIN}}">
+        <label for="licensePlate">Placa: </label>
+            <input type="text" id="licensePlate" name="licensePlate" placeholder="Endereço da agência" class="form-control" value="{{car.licensePlate}}">
+        <label for="agency">Agência: </label>
+        <select name="agency" type="text" class="form-select">
+        <option selected disabled hidden value="">Nenhuma</option>
+        {{#each agency}}
+            <option value="{{_id}}">{{name}}, {{city}}</option>
+        {{else}}
+            <option disabled value="">Nenhuma agência registrada</option>
+        {{/each}}
+        </select>
+        <br>
+        <button type="submit" class="btn btn-success" style="float: right">Editar veículo</button>    
+        </form>
+    </div>
+</div>

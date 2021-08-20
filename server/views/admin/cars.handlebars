@@ -6,12 +6,12 @@
     <div class="card mt-3">
         <div class="card-body">
             <h4>{{brand}} {{model}}</h4>
-            <p>Agência: {{agency.name}}</p>
+            <p>Agência: {{agency.name}}, {{agency.city}}</p>
             <small>{{VIN}} {{licensePlate}}</small>
         </div>
         <div class="btn-row">
-            <a href="/admin/agencies/edit-agency/{{_id}}"><button type="button" class="btn btn-primary">Editar</button></a>
-            <form action="/admin/api/deleteAgency" method="POST">
+            <a href="/admin/cars/edit/{{_id}}"><button type="button" class="btn btn-primary">Editar</button></a>
+            <form action="/admin/api/deleteCar" method="POST">
                 <input type="hidden" name="id" value="{{_id}}">
                 <button type="submit" class="btn btn-danger mt-2">Deletar</button>
             </form>

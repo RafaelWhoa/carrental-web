@@ -74,6 +74,48 @@ router.post('/api/newCar', (req, res) => {
     })
 })
 
+router.get('/cars/edit/:id', (req, res) => {
+    Car.findOne({_id: req.params.id}).lean().then((car) => {
+        Agency.find().lean().then((agency) => {
+            res.render('admin/editCar', {agency:agency, car:car})
+        }).catch((err) => {
+            req.flash('error_msg', 'Este veículo não existe')
+            res.redirect('/admin/cars')
+        })
+        })
+})
+
+router.post('/api/editCar', (req, res) => {
+    Car.findOne({_id: req.body.id}).then((car) => {
+        car.brand = req.body.brand
+        car.model = req.body.model
+        car.VIN = req.body.VIN
+        car.licensePlate = req.body.licensePlate
+        car.agency = req.body.agency
+
+        car.save().then(() => {
+            req.flash('success_msg', 'Veículo editado com sucesso')
+            res.redirect('/admin/cars')
+        }).catch((err) => {
+            req.flash('error_msg', 'Houve um erro interno ao editar o veículo')
+            res.redirect('/admin/cars')
+        })
+    }).catch((err) => {
+        req.flash('error_msg', 'Houve um erro interno ao editar o veículo')
+        res.redirect('/admin/cars')
+    })
+})
+
+router.post('/api/deleteCar', (req, res) => {
+    Car.deleteOne({_id: req.body.id}).then((car) => {
+        req.flash('success_msg', 'Veículo deletado com sucesso')
+        res.redirect('/admin/cars')
+    }).catch((err) => {
+        req.flash('error_msg', 'Houve um erro interno ao deletar o veículo')
+        req.redirect('/admin/cars')
+    })
+})
+
 router.get('/agencies/edit-agency/:id', (req, res) => {
     Agency.findOne({_id: req.params.id}).lean().then((agency) => {
         res.render('admin/editAgency', {agency:agency})

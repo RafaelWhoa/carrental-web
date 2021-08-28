@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to right top, #E8175D, #CC527A);
+    background-image: linear-gradient(to right top, #FF847C, #FECEA8);
     background-repeat: no-repeat;
     height: 100vh
 }
@@ -30,7 +30,7 @@ hr {
 
 .btn-container {
     border-radius: 10px;
-    background-color:#474747;
+    background-color:#2A363B;
     width: 150px;
 }
 
@@ -39,7 +39,7 @@ hr {
 }
 
 .card {
-    background-color: #474747;
+    background-color: #2A363B;
 }
 
 .heart {
@@ -51,14 +51,14 @@ hr {
 }
 
 .navbar{
-    background-color: #A8A7A7
+    background-color: #99B898
 }
 
 .nav-tabs .nav-link.active {
     border-color: transparent;
-    background-color: #474747 !important;
-    color: #9a1550 !important;
-    border-bottom: 4px solid #9a1550 !important;
+    background-color: #2A363B !important;
+    color: #E84A5F !important;
+    border-bottom: 4px solid #E84A5F !important;
 }
 
 .nav-fill .nav-item .nav-link,
@@ -88,7 +88,7 @@ hr {
 }
 
 .tab-pane {
-    background-color: #363636;
+    background-color: #2A363B;
     height: 300px
 }
 
@@ -100,12 +100,12 @@ hr {
 .form-control:focus {
     outline: none;
     box-shadow: none;
-    border: 1px solid #9a1550
+    border: 1px solid #E84A5F
 }
 
 .form-select:focus {
     outline: none;
-    border: 1px solid #9a1550;
+    border: 1px solid #E84A5F;
     box-shadow: none;
 }
 
@@ -119,14 +119,14 @@ hr {
 
 .custom-button {
     height: 45px;
-    background-color: #9a1550;
+    background-color: #E84A5F;
     border: none;
     color: #fff
 }
 
 .custom-button:hover,
 .custom-button:focus {
-    background-color: #9a1550;
+    background-color: #E84A5F;
     box-shadow: none;
     outline: none
 }

@@ -1,7 +1,11 @@
 body {
     background-image: linear-gradient(to right top, #FF847C, #FECEA8);
     background-repeat: no-repeat;
-    height: 100vh
+    min-height: 100%;
+}
+
+html{
+    height: 100%;
 }
 
 ::-webkit-scrollbar {

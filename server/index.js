@@ -8,6 +8,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 require('../server/models/Agency')
 const Agency = mongoose.model('agency')
+const user = require('./routes/user')
+
 
 //Session
 app.use(session({
@@ -38,6 +40,7 @@ app.use(express.static(__dirname + '/public'))
 
 //Routes
 app.use('/admin', admin)
+app.use('/user', user)
 app.get('/', (req, res) => {
     Agency.find().lean().then((agency) => {
         res.render('index', {agency:agency})

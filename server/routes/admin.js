@@ -5,6 +5,7 @@ require('../models/Agency')
 const Agency = mongoose.model('agency')
 require('../models/Car')
 const Car = mongoose.model('car')
+const {isAdmin} = require('../helpers/isAdmin')
 
 router.post('/api/newAgency', (req, res) => {
     const newAgency = {
@@ -24,11 +25,11 @@ router.post('/api/newAgency', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
+router.get('/', isAdmin, (req, res) => {
     res.render('admin')
 })
 
-router.get('/agencies', (req, res) => {
+router.get('/agencies', isAdmin, (req, res) => {
     Agency.find().lean().then((agency) => {
         res.render('admin/agencies', {agency:agency})
     }).catch((err) => {
@@ -36,11 +37,11 @@ router.get('/agencies', (req, res) => {
     })
 })
 
-router.get('/agencies/new-agency', (req, res) => {
+router.get('/agencies/new', isAdmin, (req, res) => {
     res.render('admin/newAgency')
 })
 
-router.get('/cars', (req, res) => {
+router.get('/cars', isAdmin, (req, res) => {
     Car.find().lean().populate('agency').then((car) => {
         res.render('admin/cars', { car: car})
     }).catch((err) => {
@@ -48,7 +49,7 @@ router.get('/cars', (req, res) => {
     })
 })
 
-router.get('/cars/new', (req, res) => {
+router.get('/cars/new', isAdmin, (req, res) => {
     Agency.find().lean().then((agency) => {
         res.render('admin/newCar', {agency:agency})
     }).catch((err) => {
@@ -74,7 +75,7 @@ router.post('/api/newCar', (req, res) => {
     })
 })
 
-router.get('/cars/edit/:id', (req, res) => {
+router.get('/cars/edit/:id', isAdmin, (req, res) => {
     Car.findOne({_id: req.params.id}).lean().then((car) => {
         Agency.find().lean().then((agency) => {
             res.render('admin/editCar', {agency:agency, car:car})
@@ -116,7 +117,7 @@ router.post('/api/deleteCar', (req, res) => {
     })
 })
 
-router.get('/agencies/edit-agency/:id', (req, res) => {
+router.get('/agencies/edit-agency/:id', isAdmin, (req, res) => {
     Agency.findOne({_id: req.params.id}).lean().then((agency) => {
         res.render('admin/editAgency', {agency:agency})
     }).catch((err) => {

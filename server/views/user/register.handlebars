@@ -1,13 +1,19 @@
+{{#each errors}}
+    <div class="alert alert-danger">
+        {{text}}
+    </div>
+{{/each}}
+
 <div class="card text-white">
     <div class="card-body">
-        <form action="" method="post">
+        <form action="/user/api/register" method="POST">
             <label for="name">Nome:</label>
                 <input type="text" name="name" class="form-control" required>
             <label for="email">Email:</label>
                 <input type="email" name="email" class="form-control" required>
             <label for="password">Senha:</label>
                 <input type="password" name="password" class="form-control" required>
-            <label for="password2">Confirmar senha:</label>
+            <label for="password2">Repita a senha:</label>
                 <input type="password" name="password2" class="form-control" required>
             <button type="submit" class="btn btn-success mt-4">Criar conta</button>
         </form>

@@ -9,6 +9,8 @@ const session = require('express-session');
 require('../server/models/Agency')
 const Agency = mongoose.model('agency')
 const user = require('./routes/user')
+const passport = require('passport')
+require('./config/auth')(passport)
 
 
 //Session
@@ -18,7 +20,17 @@ app.use(session({
     saveUninitialized: true
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg")
+    res.locals.error_msg = req.flash("error_msg")
+    res.locals.error = req.flash('error')
+    next()
+})
 
 //Body Parser
 app.use(express.urlencoded({ extended: true }));

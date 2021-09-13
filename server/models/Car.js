@@ -22,6 +22,27 @@ const Car = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'agency',
         required: true
+    },
+    isRented: {
+        type: Number,
+        default: 0
+    },
+    rentedAt: {
+        type: Date,
+        default: Date(0)
+    },
+    rentedUntil: {
+        type: Date,
+        default: Date(0)
+    },
+    rentedBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        default: null
+    },
+    ageUnder25Allowed: {
+        type: Number,
+        default: 0
     }
 })
 
